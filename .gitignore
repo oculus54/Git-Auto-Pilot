@@ -1,32 +1,22 @@
-# Environments
+# Python Virtual Environment
+Include/
+Lib/
+Scripts/
+share/
+pyvenv.cfg
+
+# Environment variables
 .env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
 
-# Database / Storage
+# Database
 chroma_db/
-*.sqlite3
 
-# Python Bytecode
+# Temporary / Other folders
+naa/
+NewFolder/
+
+# Cache files
 __pycache__/
-*.py[cod]
-*$py.class
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# IDEs and Editors
-.vscode/
-.idea/
-*.swp
-*.swo
+*.pyc
+*.pyo
+*.pyd
