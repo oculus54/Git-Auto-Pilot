@@ -1,53 +1,80 @@
-# AutoShell 🤖💻
+# Git-Auto-Pilot 🤖💻
 
-An intelligent, context-aware command-line assistant that translates natural language into functional OS commands. Powered by LLMs (Google Gemini & Hugging Face), AutoShell not only generates commands but learns from your environment and past successes to improve accuracy over time.
+An intelligent, context-aware command-line assistant that translates natural language into functional OS and Git commands. The repository showcases a highly specialized, safe, open-source Git assistant powered by **Qwen 2.5 Coder** via Hugging Face.
 
-## ✨ Project Evolution & Features
+---
 
-This repository contains multiple iterations of the AutoShell assistant, demonstrating progressive enhancements in functionality, focus, and safety:
+## 📁 Repository Files & Evolution
 
-### 1. General OS Assistant (`prototype.py`)
-- **Natural Language to OS Commands**: Translates plain English into Windows (cmd.exe) or Linux/Mac (Bash) commands.
-- **Context-Aware Generation**: Automatically detects your Operating System and Current Working Directory (CWD).
-- **Retrieval-Augmented Generation (RAG)**: Uses **ChromaDB** as a local vector database to store command history. Learns from past successful requests to ensure high accuracy.
-- **Agentic Auto-Correction Loop**: Executes commands, captures error messages (`stderr`) on failure, and autonomously attempts to self-correct the command (up to 3 retries).
-- **Model**: Powered by the Google Gemini 2.5 Flash API.
+The project is structured into three main iterations, demonstrating how the architecture evolved:
 
-### 2. Git-Specific Assistant (`ver1forgit.py`)
-- **Git Expert**: Strict focus on generating valid, up-to-date Git version control commands. Refuses non-Git tasks.
-- **Knowledge Base Ingestion**: Pre-loads a local `git_cheat_sheet.csv` into ChromaDB for initial RAG context before you even type your first prompt.
-- **Agentic Loop**: Retains the self-correction mechanism for failed Git commands.
-- **Model**: Powered by the Google Gemini 2.5 Flash API.
+1. **`hf_autoshell.py` (The Final Form - Open-Source & Safe)**
+   - **LLM**: Qwen 2.5 Coder 32B via Hugging Face Inference API.
+   - **Scope**: Strictly Git commands.
+   - **Features**: Complete integration of Hugging Face, robust ChromaDB `upsert` handling, and a critical **Human-in-the-Loop Safety Gate**.
 
-### 3. Open-Source LLMs & Safety Gate (`hf_autoshell.py`)
-- **Hugging Face Integration**: Powered by the Hugging Face Inference API (defaults to `Qwen/Qwen2.5-Coder-32B-Instruct`), allowing flexibility to swap to models like Llama 3 or Mixtral.
-- **Human-in-the-Loop Safety Gate**: Introduces a critical confirmation prompt (`[y/N]`) before executing any proposed command, preventing destructive actions.
-- **Robust RAG Updates**: Uses `upsert` for ChromaDB insertions to prevent database crashes when reloading the Git cheat sheet or duplicate history.
+2. **`git_cheat_sheet.csv`**
+   - A dataset containing common Git tasks and their corresponding commands. Used to seed the vector database.
 
-## 🚀 Quick Start
+3. **`.env`** (User created)
+   - Stores API keys securely (`GEMINI_API_KEY` and `HF_TOKEN`).
 
-1. **Install dependencies:**
-   ```bash
-   pip install google-generativeai chromadb huggingface_hub python-dotenv
-   ```
-2. **Setup your Environment:**
-   Create a `.env` file in the root directory and add your API keys:
-   ```env
-   GEMINI_API_KEY=your_gemini_api_key
-   HF_TOKEN=your_huggingface_token
-   ```
-3. **Run the desired assistant:**
-   - For the General Shell (Gemini): `python prototype.py`
-   - For the Git Shell (Gemini): `python ver1forgit.py`
-   - For the Git Shell (Hugging Face with Safety Gate): `python hf_autoshell.py`
+---
 
-## 🛠️ How the Agentic Architecture Works
+## 🧠 Deep Dive: How the Architecture is Built
 
-When you enter a prompt (e.g., `undo my last commit`):
-1. **Query RAG**: Searches ChromaDB for similar past tasks or relevant cheat sheet entries.
-2. **Context Compilation**: Gathers OS details, CWD, RAG results, and your specific prompt.
-3. **LLM Generation**: Requests the exact, markdown-stripped command from the configured LLM.
-4. **Safety Check** *(in `hf_autoshell.py`)*: Presents the command to you in the terminal and waits for confirmation.
-5. **Execution & Self-Correction**: 
-   - **On Success** -> Automatically saves the interaction (Prompt + Command) to ChromaDB memory.
-   - **On Failure** -> Captures the raw OS error, feeds it back to the LLM, and retries the loop (up to 3 times).
+### 1. Hugging Face & Qwen 2.5 Implementation
+In `hf_autoshell.py`, the project moves away from proprietary APIs to open-source models:
+- **Client Setup**: We use the `huggingface_hub.InferenceClient` to connect to the Serverless Inference API.
+- **Model Choice**: `Qwen/Qwen2.5-Coder-32B-Instruct` was selected for its exceptional performance in code and command generation.
+- **Prompt Engineering**: The system prompt enforces strict rules (e.g., no markdown wrappers like ` ```bash `) and ingests the System Context (OS type, Current Working Directory) alongside RAG results.
+- **Safety Gate**: Before any command generated by Qwen is executed by `subprocess.run()`, the script pauses and asks the user: `Execute this command? [y/N]`. This prevents unintended destructive actions.
+
+### 2. Retrieval-Augmented Generation (RAG) with ChromaDB
+The project uses **ChromaDB** as a local, persistent vector database (`./chroma_db`) to give the LLM long-term memory.
+- **Querying**: When you type a prompt (e.g., "undo my last commit"), the script queries ChromaDB for the 3 most semantically similar past requests.
+- **Context Injection**: These results are appended to the LLM prompt as "Relevant Past Git Commands", guiding the LLM to use previously successful syntax.
+- **Continuous Learning**: When a command successfully executes (Exit Code 0), the script hashes the prompt+command and saves it back into ChromaDB. Over time, the assistant learns your specific workflows and directory pathing.
+
+### 3. CSV Knowledge Ingestion
+To solve the "cold start" problem (where the database is empty on the first run), `hf_autoshell.py` and `ver1forgit.py` use a CSV file (`git_cheat_sheet.csv`).
+- **Parsing**: `csv.DictReader` parses the 'Task' and 'Command' columns.
+- **Embedding**: The 'Task' is embedded as the searchable document, and the 'Command' is stored as metadata.
+- **Robust Updates**: In `hf_autoshell.py`, we use `collection.upsert()` to ingest this data. This safely updates existing records or adds new ones without crashing the script if the IDs already exist.
+
+### 4. Agentic Auto-Correction Loop
+If an executed command fails:
+1. The script captures the `stderr` from the `subprocess`.
+2. It feeds this raw error back to the LLM along with the original prompt and the failed command.
+3. It asks the LLM to analyze the error and generate a corrected command.
+4. This loops up to 3 times autonomously before returning control to the user.
+
+---
+
+## 🚀 How to Run the Project
+
+### Step 1: Install Dependencies
+The project requires libraries for LLM communication, vector search, and environment variable management.
+```bash
+pip install chromadb huggingface_hub python-dotenv
+```
+
+### Step 2: Setup Environment Variables
+Create a file named `.env` in the root directory of the repository. Add your API keys:
+```env
+# Required for hf_autoshell.py
+HF_TOKEN=your_huggingface_token_here
+```
+
+### Step 3: Ensure the CSV Exists
+Make sure `git_cheat_sheet.csv` is in the same folder as the scripts to enable initial RAG ingestion.
+
+### Step 4: Run the Assistant
+Choose which version of the assistant you want to run:
+
+- **To run the Hugging Face Qwen 2.5 version (Recommended):**
+  ```bash
+  python hf_autoshell.py
+  ```
+
+Once running, type your natural language request (e.g., `create a new branch called feature-xyz`). To exit the shell at any time, type `exit` or `quit`.
