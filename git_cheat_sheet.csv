@@ -1,0 +1,13 @@
+Task,Command,Description
+"initialize a new git repository","git init","Creates a new empty Git repository or reinitializes an existing one."
+"clone a repository","git clone <url>","Downloads a repository from the internet to your local machine."
+"check repository status","git status","Displays the state of the working directory and the staging area."
+"stage all changes","git add .","Adds all modified and new files to the staging area to be committed."
+"commit changes with a message","git commit -m ""<message>""","Records the staged changes to the repository history."
+"push changes to remote","git push origin <branch>","Uploads local repository content to a remote repository."
+"pull changes from remote","git pull origin <branch>","Fetches and merges changes from the remote server to your working directory."
+"create a new branch","git branch <branch-name>","Creates a new branch for isolated development."
+"switch to a branch","git checkout <branch-name>","Switches your working directory to the specified branch."
+"view commit history","git log","Shows the chronological commit history for the repository."
+"undo last commit but keep changes","git reset --soft HEAD~1","Removes the last commit from history but keeps the modified files in your working directory."
+"stash current changes","git stash","Temporarily shelves changes you've made to your working tree."
