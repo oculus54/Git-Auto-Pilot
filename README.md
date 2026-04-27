@@ -17,7 +17,7 @@ The project is structured into three main iterations, demonstrating how the arch
    - A dataset containing common Git tasks and their corresponding commands. Used to seed the vector database.
 
 3. **`.env`** (User created)
-   - Stores API keys securely (`GEMINI_API_KEY` and `HF_TOKEN`).
+   - Stores API keys securely (`HF_TOKEN`).
 
 ---
 
