@@ -1,6 +1,6 @@
 # Git-Auto-Pilot 🤖💻
 
-An intelligent, context-aware command-line assistant that translates natural language into functional OS and Git commands. The repository showcases a highly specialized, safe, open-source Git assistant powered by **Qwen 2.5 Coder** via Hugging Face.
+An intelligent, context-aware command-line assistant that translates natural language into Git commands. The repository showcases a highly specialized, safe, open-source Git assistant powered by **Qwen 2.5 Coder** via Hugging Face.
 
 ---
 
