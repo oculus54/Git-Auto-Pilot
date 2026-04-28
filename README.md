@@ -75,6 +75,8 @@ Choose which version of the assistant you want to run:
 - **To run the Hugging Face Qwen 2.5 version (Recommended):**
   ```bash
   python hf_autoshell.py
+  #python hf_autoshell_v2.py just ui changes 
   ```
+  
 
 Once running, type your natural language request (e.g., `create a new branch called feature-xyz`). To exit the shell at any time, type `exit` or `quit`.
