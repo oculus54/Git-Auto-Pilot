@@ -11,3 +11,7 @@ Task,Command,Description
 "view commit history","git log","Shows the chronological commit history for the repository."
 "undo last commit but keep changes","git reset --soft HEAD~1","Removes the last commit from history but keeps the modified files in your working directory."
 "stash current changes","git stash","Temporarily shelves changes you've made to your working tree."
+"initialize git lfs","git lfs install","Initializes Git Large File Storage (LFS) in the repository."
+"track files with git lfs","git lfs track ""<pattern>""","Configures Git LFS to track files matching a specific pattern."
+"list git lfs tracked files","git lfs ls-files","Lists all files currently tracked by Git LFS."
+"add large files in git","git lfs track ""<pattern>""","Configures Git LFS to track files matching a specific pattern to prevent adding them directly."

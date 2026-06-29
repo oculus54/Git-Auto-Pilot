@@ -1,0 +1,25 @@
+{
+  "name": "git-auto-pilot",
+  "version": "1.0.0",
+  "description": "An AI-powered Git assistant CLI shell.",
+  "main": "bin/cli.js",
+  "bin": {
+    "git-autopilot": "./bin/cli.js"
+  },
+  "keywords": [
+    "git",
+    "ai",
+    "assistant",
+    "cli",
+    "qwen",
+    "embeddings",
+    "rag"
+  ],
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "bin/cli.js",
+    "hf_autov3.py",
+    "git_cheat_sheet.csv"
+  ]
+}
