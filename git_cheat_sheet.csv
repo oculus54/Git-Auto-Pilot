@@ -1,4 +1,5 @@
 Task,Command,Description
+<<<<<<< HEAD
 "initialize a new git repository","git init","Creates a new empty Git repository or reinitializes an existing one."
 "clone a repository","git clone <url>","Downloads a repository from the internet to your local machine."
 "check repository status","git status","Displays the state of the working directory and the staging area."
@@ -15,3 +16,91 @@ Task,Command,Description
 "track files with git lfs","git lfs track ""<pattern>""","Configures Git LFS to track files matching a specific pattern."
 "list git lfs tracked files","git lfs ls-files","Lists all files currently tracked by Git LFS."
 "add large files in git","git lfs track ""<pattern>""","Configures Git LFS to track files matching a specific pattern to prevent adding them directly."
+=======
+Initialize local Git repo,git init,Initialize a local Git repository
+Initialize bare repo,git init --bare,Initialize a bare repository for hosting
+Clone remote repo,git clone [url],Clone a repository from a remote source
+Clone shallow copy,git clone --depth 1 [url],Clone only the latest commit to save space
+Clone with submodules,git clone --recurse-submodules [url],Clone repository along with all its submodules
+Set user name,git config --global user.name "[name]",Set the username for all local repositories
+Set user email,git config --global user.email "[email]",Set the email for all local repositories
+Set text editor,git config --global core.editor [editor],Set the default text editor for Git
+Create command shortcut,git config --global alias.[alias] [command],Create a shortcut for a long Git command
+List config settings,git config --list,List all configurations applied to Git
+Check repo status,git status,List modified files and those staged for commit
+Check short status,git status -s,Show status in a short concise format
+Stage specific file,git add [file],Stage a specific file for the next commit
+Stage all files,git add .,Stage all changed and new files
+Stage interactively,git add -p,Interactively review and stage changes line by line
+Commit staged changes,git commit -m "[message]",Commit staged snapshots with a message
+Stage and commit,git commit -a -m "[message]",Stage all tracked files and commit in one step
+Amend last message,git commit --amend -m "[message]",Change the last commit message
+Amend last commit,git commit --amend --no-edit,Add changes to the last commit without changing message
+Delete and stage file,git rm [file],Remove file from working directory and stage removal
+Untrack file local safe,git rm --cached [file],Remove file from repository tracking but keep locally
+Rename file and stage,git mv [old-file] [new-file],Rename a file and stage the move
+View unstaged changes,git diff,Show unstaged changes compared to the index
+View staged changes,git diff --staged,Show changes between staged files and last commit
+Compare branches,git diff [branch1] [branch2],Show changes between two different branches
+Compare commits,git diff [commit1] [commit2],Show changes between two specific commits
+List local branches,git branch,List all local branches
+List remote branches,git branch -r,List all remote tracking branches
+List all branches,git branch -a,List all local and remote branches
+Create new branch,git branch [branch-name],Create a new branch
+Delete merged branch,git branch -d [branch-name],Delete a branch if it is safely merged
+Force delete branch,git branch -D [branch-name],Force delete a branch even if unmerged
+Rename current branch,git branch -m [new-name],Rename the current branch
+Switch to branch,git checkout [branch-name],Switch to a specific branch
+Create and switch branch,git checkout -b [branch-name],Create a new branch and switch to it
+Switch to branch modern,git switch [branch-name],Switch to a specific branch (modern syntax)
+Create switch branch modern,git switch -c [branch-name],Create and switch to a new branch (modern syntax)
+Merge branch,git merge [branch-name],Merge specified branch into current branch
+Abort active merge,git merge --abort,Stop a merge conflict and reset state
+Apply specific commit,git cherry-pick [commit],Apply the changes from a specific commit onto current branch
+Rebase commits,git rebase [branch],Reapply commits from current branch on top of another branch
+Interactive rebase,git rebase -i [commit],Launch interactive rebase to squash fix or reorder commits
+Continue interrupted rebase,git rebase --continue,Restart the rebasing process after resolving conflicts
+Abort active rebase,git rebase --abort,Completely cancel the rebase and restore original state
+List remote repositories,git remote -v,List all configured remote repositories
+Link remote repo,git remote add [name] [url],Connect local repository to a remote server
+Remove remote link,git remote remove [name],Delete a connection to a remote repository
+Rename remote link,git remote rename [old] [new],Rename a remote connection reference
+Download remote history,git fetch [remote],Download history from remote without merging changes
+Prune deleted branches,git fetch --prune,Clear local references to deleted remote branches
+Fetch and merge,git pull [remote] [branch],Fetch remote history and merge into current branch
+Fetch and rebase,git pull --rebase,Fetch remote history and rebase local changes on top
+Upload local commits,git push [remote] [branch],Upload local commits to a remote branch
+Delete remote branch,git push [remote] --delete [branch],Delete a branch from the remote repository
+Push tags to remote,git push --tags,Push all local tags to the remote repository
+View commit history,git log,Show commit history for the active branch
+View compact history,git log --oneline,Show commit history in compact one-line format
+View history graph,git log --graph --oneline --all,Display history as a visual ASCII graph
+View file history diff,git log -p [file],Show history for a specific file with detailed diffs
+Filter history by author,git log --author="[name]",Filter commit history by a specific author
+Show commit details,git show [commit],Show metadata and content changes of a commit
+Line history audit,git blame [file],Show who changed what line in a file and when
+View local action log,git reflog,Show a log of all references moves and actions locally
+Discard unstaged changes,git restore [file],Discard local unstaged modifications in a file
+Unstage a file,git restore --staged [file],Unstage a file but keep its local modifications
+Discard modifications legacy,git checkout -- [file],Older syntax to discard local unstaged changes
+Soft reset commit,git reset --soft [commit],Move branch pointer backward keeping changes staged
+Mixed reset commit,git reset [commit],Move branch pointer backward keeping changes unstaged
+Hard reset commit,git reset --hard [commit],Move branch pointer backward destroying all uncommitted changes
+Invert past commit,git revert [commit],Create a new commit that completely inverts a past commit
+Stash tracked changes,git stash,Temporarily shelve all modified tracked files
+Stash with untracked files,git stash -u,Stash modifications including untracked files
+List saved stashes,git stash list,List all saved stashes
+Apply and remove stash,git stash pop,Apply the newest stash and remove it from the list
+Apply and keep stash,git stash apply,Apply the newest stash but keep it in the list
+Delete specific stash,git stash drop [stash@{n}],Delete a specific stash from the list
+Clear all stashes,git stash clear,Delete all saved stashes
+List all tags,git tag,List all tags in the repository
+Create lightweight tag,git tag [tag-name],Create a lightweight tag at the current commit
+Create annotated tag,git tag -a [tag-name] -m "[msg]",Create an annotated tag with a message
+Delete local tag,git tag -d [tag-name],Delete a specific local tag
+Link nested repository,git submodule add [url],Add a separate repository inside your repository
+Initialize submodules,git submodule update --init --recursive,Initialize and update all submodules recursively
+Optimize repository storage,git gc,Optimize the repository by cleaning up garbage
+Verify repository integrity,git fsck,Verify the connectivity and validity of repository objects
+Purge untracked files,git clean -fd,Forcefully remove all untracked files and directories
+>>>>>>> 114934fec40efebbc73dcbd6d11a374a2f72687c
