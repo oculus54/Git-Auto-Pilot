@@ -1,6 +1,6 @@
 {
   "name": "git-auto-shelldm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An AI-powered Git assistant CLI shell.",
   "main": "bin/cli.js",
   "bin": {
