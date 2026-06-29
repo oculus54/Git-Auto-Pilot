@@ -1,10 +1,10 @@
 {
-  "name": "git-auto-pilot",
+  "name": "git-auto-shelldm",
   "version": "1.0.0",
   "description": "An AI-powered Git assistant CLI shell.",
   "main": "bin/cli.js",
   "bin": {
-    "git-autopilot": "./bin/cli.js"
+    "git-autopilot": "bin/cli.js"
   },
   "keywords": [
     "git",
