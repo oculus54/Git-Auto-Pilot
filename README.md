@@ -1,4 +1,4 @@
-# git-auto-shelldm 🤖💻
+# Git-auto-Pilot 🤖💻
 
 An intelligent, context-aware command-line assistant that translates natural language into Git commands. Powered by **Qwen 2.5 Coder 32B** and the **Hugging Face Inference API**, it provides a lightning-fast, secure, and interactive shell designed to optimize your Git workflows.
 
@@ -39,6 +39,8 @@ To use the Hugging Face API, you need a free API token.
 Get your token here: https://huggingface.co/settings/tokens
 Enter your Hugging Face API Token (HF_TOKEN):
 ```
+
+![sample image](sample.png)
 
 ---
 
