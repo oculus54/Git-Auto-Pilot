@@ -1,0 +1,3 @@
+chromadb
+huggingface_hub
+python-dotenv
