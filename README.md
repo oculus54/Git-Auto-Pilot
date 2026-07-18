@@ -19,16 +19,16 @@ An intelligent, context-aware command-line assistant that translates natural lan
 ## 🚀 Quick Start
 
 ### 1. Install Globally
-Install the CLI command globally on your system using NPM:
+
 ```bash
-npm install -g git-auto-shelldm
+git clone https://github.com/oculus54/Git-Auto-Pilot
 ```
-*(Requires Node.js and Python 3 to be installed on your system)*
+*(Python 3 to be installed on your system)*
 
 ### 2. Run the Assistant
 Launch the interactive shell from within any Git repository:
 ```bash
-git-autopilot
+python hf_autoshell_v2.py
 ```
 
 ### 3. Enter your HF_TOKEN (First run only)
