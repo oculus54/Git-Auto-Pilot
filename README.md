@@ -1,18 +1,15 @@
 # Git-Auto-Pilot 🤖💻
 
 ![Python](https://img.shields.io/badge/-Python-3776AB?style=for-the-badge\&logo=Python\&logoColor=white)
-![Node.js](https://img.shields.io/badge/-Node.js-339933?style=for-the-badge\&logo=Node.js\&logoColor=white)
 ![Git](https://img.shields.io/badge/-Git-F05032?style=for-the-badge\&logo=Git\&logoColor=white)
 ![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge\&logo=GitHub\&logoColor=white)
 ![Hugging Face](https://img.shields.io/badge/-Hugging%20Face-FFD21E?style=for-the-badge\&logo=huggingface\&logoColor=black)
 ![Qwen](https://img.shields.io/badge/-Qwen%202.5%20Coder-6E57E0?style=for-the-badge)
-![LLM](https://img.shields.io/badge/-Large%20Language%20Model-412991?style=for-the-badge)
 ![RAG](https://img.shields.io/badge/-RAG%20Pipeline-00A67E?style=for-the-badge)
 ![Sentence Transformers](https://img.shields.io/badge/-Sentence%20Transformers-FF6F00?style=for-the-badge)
-![NPM](https://img.shields.io/badge/-NPM-CB3837?style=for-the-badge\&logo=npm\&logoColor=white)
-![JSON](https://img.shields.io/badge/-JSON-000000?style=for-the-badge\&logo=json\&logoColor=white)
-![Linux](https://img.shields.io/badge/-Linux-FCC624?style=for-the-badge\&logo=Linux\&logoColor=black)
-![Windows](https://img.shields.io/badge/-Windows-0078D6?style=for-the-badge\&logo=Windows\&logoColor=white)
+
+
+![sample image](sample.png)
 
 ---
 
