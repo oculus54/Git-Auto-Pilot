@@ -1,5 +1,4 @@
 # Git-Auto-Pilot 🤖💻
-
 ![Python](https://img.shields.io/badge/-Python-3776AB?style=for-the-badge\&logo=Python\&logoColor=white)
 ![Git](https://img.shields.io/badge/-Git-F05032?style=for-the-badge\&logo=Git\&logoColor=white)
 ![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge\&logo=GitHub\&logoColor=white)
